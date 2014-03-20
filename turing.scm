@@ -146,3 +146,19 @@
       (_.1 _ l l 42)
       . _.2)
      (=/= ((_.0 42)) ((_.1 42))))))
+
+;; Let's get a couple more answers
+;;
+;; 196 collections
+;; 10 666 ms elapsed cpu time, including 3884 ms collecting
+;; 10 668 ms elapsed real time, including 3885 ms collecting
+;; 1 639 446 432 bytes allocated
+(test "tm-2b"
+  (run 3 (q)
+    (turing-machineo q '(42) 1 '(() _ ()) 42 '(() _ (l l o))))
+  '((((1 _ o l _.0) (_.0 _ l l _.1) (_.1 _ l l 42) . _.2)
+     (=/= ((_.0 42)) ((_.1 42))))
+    (((1 _ o l _.0) (_.0 _ l l _.0) (_.0 _ _ n 42) . _.1)
+     (=/= ((_.0 42))))
+    (((1 _ o l _.0) (_.0 _ l l _.0) _.1 (_.0 _ _ n 42) . _.2)
+     (=/= ((_.0 42))))))
